@@ -84,22 +84,48 @@ body {
     width: 200px;
 }
 
-.init-content h1 {
+.sim {
     padding-top: 2rem;
     font-weight: 100;
     color: #dfdfdf;
     font-size: 3.5rem;
     line-height: 1;
-    margin-bottom: 2rem;
 }
 
-.init-content h1 span {
-    font-weight: 700;
+.glitch {
+    padding-top: 0;
+    font-weight: 800;
     color: #fd0d0c;
-    font-size: 4rem;
+    font-size: 3.5rem;
     line-height: 1;
-    margin-bottom: 3rem;
+    margin-bottom: 30px;
 }
+
+.glitch-animation {
+    animation: glitch 0.1s infinite alternate;
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow: 2px 0 0 red, -2px 0 0 cyan;
+    }
+    20% {
+        text-shadow: -2px 0 0 red, 2px 0 0 cyan;
+    }
+    40% {
+        text-shadow: 2px 0 0 red, -2px 0 0 cyan;
+    }
+    60% {
+        text-shadow: -2px 0 0 red, 2px 0 0 cyan;
+    }
+    80% {
+        text-shadow: 2px 0 0 red, -2px 0 0 cyan;
+    }
+    100% {
+        text-shadow: -2px 0 0 red, 2px 0 0 cyan;
+    }
+}
+
 
 .init-content p {
     color: #dfdfdf;
