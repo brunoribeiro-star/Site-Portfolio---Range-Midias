@@ -831,6 +831,28 @@ body {
 
 @media (max-width: 425px) {
 
+    .init {
+        padding-top: 4rem; /* Reduz o padding-top pela metade para telas menores */
+        flex-direction: column; /* Empilha os itens verticalmente */
+    }
+
+    .init-content {
+        padding-top: 4rem; /* Reduz o padding-top pela metade para telas menores */
+        flex: none; /* Remove o flex-grow, flex-shrink e flex-basis padrões */
+        max-width: 100%; /* Limita a largura máxima a 100% */
+        width: auto; /* Permite que o elemento se ajuste ao conteúdo internamente */
+    }
+
+    .init-content img {
+        height: auto; /* Mantém a proporção da imagem baseada na largura */
+        max-width: 100%; /* Garante que a imagem não exceda a largura do elemento pai */
+    }
+
+    .sim, .glitch {
+        font-size: 2rem; /* Diminui o tamanho da fonte para telas menores */
+        padding-top: 1rem; /* Reduz o padding-top */
+    }
+
     .services-content {
         flex-direction: column;
         padding: 0; /* Remove o padding que estava definido para ajustar o conteúdo */
