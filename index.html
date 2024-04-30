@@ -205,7 +205,7 @@
     <section class="author">
       <div class="author-content">
         <div class="paragraphs-wrapper">
-          <p>RANGE MIDIAS - &copy;Todos os direitos reservados - 2024/p>
+          <p>RANGE MIDIAS - &copy;Todos os direitos reservados - 2024 </p>
             <p>Desenvolvido por @brunoribeiro.design</p>
         </div>
       </div>
@@ -331,6 +331,14 @@
     event.preventDefault(); // Impede o comportamento padrão do link
     const nextSection = document.querySelector('#next-section');
     nextSection.scrollIntoView({ behavior: 'smooth' }); // Rolagem suave para a próxima seção
+
+    window.addEventListener('resize', function() {
+    /* Sua lógica para recarregar ou atualizar o particles.js */
+    particlesJS.load('particles-js', 'particles.json', function() {
+        console.log('particles.js config loaded');
+    });
+});
+
 });
 
 document.querySelectorAll('nav a').forEach(anchor => {

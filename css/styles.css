@@ -20,6 +20,8 @@ a:hover {
 }
 
 nav {
+    width: 100%; /* Garante que a nav não exceda o viewport */
+    box-sizing: border-box;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -30,7 +32,16 @@ nav {
 
 body {
     background-color: #101010;
+    max-width: 100%;
+    overflow-x: hidden;
 }
+
+#particles-js canvas {
+    display: block; /* Remove espaços extras abaixo do canvas */
+    max-width: 100vw; /* Limita a largura do canvas ao viewport */
+    overflow: hidden; /* Garante que nada do canvas vaze para fora da tela */
+}
+
 
 .nav-list {
     list-style: none;
@@ -43,6 +54,7 @@ body {
 }
 
 .mobile-menu {
+    transition: transform 0.3s ease-in-out;
     display: none;
     cursor: pointer;
 }
@@ -556,6 +568,8 @@ body {
 
 
 .final {
+    max-width: 100%;
+    box-sizing: border-box;
     padding: 3rem;
     display: flex;
     justify-content: center;
@@ -627,12 +641,10 @@ body {
 }
 
 @media (max-width: 999px) {
-    body {
-        overflow-x: hidden;
-    }
+    /* Outros estilos que você já tem */
 
     .nav-list {
-        position: absolute;
+        position: fixed; /* Usar fixed em vez de absolute para ficar relativo à viewport */
         top: 8vh;
         right: 0;
         width: 50vw;
@@ -641,41 +653,289 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
-        transform: translateX(100%);
+        transform: translateX(100%); /* Começa fora da tela */
         transition: transform 0.3s ease-in;
-    }
-
-    .nav-list li {
-        margin-left: 0;
-        opacity: 0;
+        z-index: 1000; /* Garante que o menu fique acima de outros conteúdos */
     }
 
     .mobile-menu {
-        display: block;
+        display: block; /* Garante que o botão esteja visível */
     }
 
     .nav-list.active {
-        transform: translateX(0);
+        transform: translateX(0); /* Quando ativo, move para a posição de visualização */
     }
 
-    @keyframes navLinkFade {
-        from {
-            opacity: 0;
-            transform: translateX(50px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
+    /* Animação para os links do menu */
+    .nav-list li {
+        opacity: 1; /* Se você quiser animar a opacidade, mantenha como 1 */
+        animation: navLinkFade 0.5s ease forwards var(--i);
     }
 
+    /* Estilização das linhas do menu quando ativo */
     .mobile-menu.active .line1 {
-        transform: rotate(-45deg) translate(-8px, 8px);
+        transform: rotate(-45deg) translate(-5px, 5px);
     }
     .mobile-menu.active .line2 {
         opacity: 0;
     }
     .mobile-menu.active .line3 {
-        transform: rotate(-45deg) translate(-5px, -7px);
+        transform: rotate(45deg) translate(-5px, -5px);
     }
 }
+
+
+@media (max-width: 1198.98px) {
+    .about, .cta {
+        flex-direction: row; /* Mantém os itens lado a lado */
+        align-items: center; /* Centraliza verticalmente */
+        justify-content: center; /* Centraliza horizontalmente */
+        padding-top: 4rem; /* Ajuste o padding para menor em telas menores */
+        padding-bottom: 4rem;
+    }
+
+    .about-content, .cta-content {
+        flex-direction: row; /* Garante que os itens fiquem lado a lado */
+        align-items: center; /* Alinha verticalmente os itens */
+        justify-content: center; /* Centraliza horizontalmente dentro do contêiner */
+        max-width: 100%; /* Aumenta a largura máxima para adaptar ao espaço disponível */
+        padding: 0 20px; /* Adiciona padding horizontal */
+    }
+
+    .about-content-img, .cta-content-img {
+        margin-right: 20px; /* Espaço à direita para separar da descrição */
+        width: auto; /* Ajusta a largura para auto para adaptar ao conteúdo */
+        max-width: 50%; /* Limita a largura máxima da imagem */
+    }
+
+    .about-content-img img, .cta-content-img img {
+        width: 100%; /* Faz a imagem ocupar todo o espaço disponível na div de imagem */
+        height: auto; /* Mantém a proporção da imagem */
+    }
+
+    .about-details, .cta-details {
+        max-width: 50%; /* Limita a largura máxima dos detalhes para equilibrar com a imagem */
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    body {
+        overflow-x: hidden; /* Evita rolagem horizontal */
+    }
+
+    .init, .services, .benefits, .about, .cta, .feedbacks, .footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%; /* Garante que as seções não excedam a largura da tela */
+        max-width: 100%; /* Limita a largura máxima */
+        box-sizing: border-box; /* Inclui padding e bordas na largura total */
+    }
+
+    /* Ajustes específicos para conteúdo centralizado e em coluna */
+    .init-content, .services-content, .benefits-content, .about-content, .cta-content, .feedbacks-content, .footer-content {
+        align-items: center;
+        justify-content: center;
+        padding: 0 15px; /* Adiciona padding para evitar que o conteúdo toque as bordas */
+    }
+
+    /* Removendo a ordem negativa para a imagem da benefits e colocando ela por último */
+    .benefits-content-img {
+        order: 3; /* Coloca a imagem no final do conteúdo */
+        margin-top: 20px; /* Adiciona espaço entre o texto e a imagem */
+    }
+
+    .about-content {
+        flex-direction: column; /* Muda a direção do flex para coluna */
+    }
+
+    .about-content-img {
+        margin-right: 0; /* Remove a margem à direita, que não é necessária em layout de coluna */
+        margin-bottom: 20px; /* Adiciona espaço entre a imagem e o texto abaixo */
+    }
+
+    .about-details {
+        text-align: center; /* Centraliza o texto para alinhar com a imagem acima */
+    }
+
+    .about-details, .cta-details, .benefits-details {
+        width: 90%; /* Define a largura para 90% da largura disponível para garantir que não fiquem muito estreitos */
+        margin: 0 auto; /* Centraliza os detalhes na página */
+        text-align: center; /* Alinha o texto ao centro */
+    }
+
+    .about-content-img img, .cta-content-img img, .benefits-content-img img {
+        max-width: 100%; /* Garante que a imagem não exceda a largura do container */
+        height: auto; /* Mantém a proporção da altura */
+    }
+
+    .about-content, .benefits-content, .cta-content {
+        flex-direction: column; /* Empilha imagem e texto verticalmente */
+        align-items: center; /* Alinha os conteúdos ao centro */
+    }
+
+    .about-content-img img {
+        width: 80%; /* Reduz a largura da imagem para melhor ajuste */
+        max-width: 400px; /* Define uma largura máxima para garantir que não fique muito grande */
+        height: auto; /* Mantém a proporção da altura baseada na largura ajustada */
+    }
+
+    .about-content, .benefits-content, .services-content, .cta-content, .feedbacks-content, .footer-content {
+        max-width: 100%; /* Garante que os conteúdos não excedam a largura da viewport */
+        padding: 0 20px; /* Adiciona padding para evitar que o conteúdo toque as bordas da viewport */
+        box-sizing: border-box; /* Inclui padding na largura total do elemento */
+    }
+
+    .about-content-img img, .cta-content-img img, .benefits-content-img img {
+        max-width: 100%; /* Ajusta a largura máxima para a imagem */
+        height: auto; /* Mantém a proporção da altura */
+    }
+
+    .about, .services, .benefits, .cta, .feedbacks, .footer {
+        width: 100%; /* Assegura que as seções ocupem toda a largura disponível */
+    }
+
+    .benefits-content {
+        flex-direction: column; /* Altera o layout para empilhar verticalmente */
+    }
+
+    .benefits-content-img {
+        margin-right: 0; /* Remove o espaçamento à direita */
+        margin-bottom: 20px; /* Adiciona espaçamento entre a imagem e os detalhes abaixo */
+    }
+
+    .benefits-content-img img {
+        max-width: 300px; /* Ajusta a largura máxima da imagem */
+        height: auto; /* Mantém a proporção da altura baseada na largura */
+    }
+
+    .benefits-details, .team, .experience, .social {
+        width: 100%; /* Faz com que ocupem a largura total do container */
+        text-align: center; /* Centraliza o texto */
+    }
+
+    .team, .experience, .social {
+        max-width: 100%; /* Limita a largura ao máximo do container */
+        box-sizing: border-box; /* Inclui padding e bordas na largura total */
+        padding: 20px; /* Mantém o padding para consistência do layout */
+        margin: 20px 0; /* Adiciona margem vertical para separação */
+        background-color: #111111; /* Mantém o fundo, se necessário */
+        border-radius: 10px; /* Mantém os cantos arredondados */
+        border: 2px solid transparent; /* Mantém a borda */
+        border-image: linear-gradient(to bottom right, transparent 70%, rgba(255, 0, 0, 0.5)) 2 round; /* Mantém a borda gradiente */
+    }
+}
+
+
+@media (max-width: 425px) {
+
+    .services-content {
+        flex-direction: column;
+        padding: 0; /* Remove o padding que estava definido para ajustar o conteúdo */
+    }
+
+    .services-content > div {
+        /* Redefine o flex para não calcular o tamanho com base em 33.33% e espaço entre itens */
+        flex: none;
+        width: 100%; /* Faz cada div ocupar a largura inteira */
+        margin-bottom: 20px; /* Adiciona espaço abaixo de cada div para separação */
+    }
+
+    /* Estilizações adicionais para ajustar o tamanho e alinhamento dos itens internos */
+    .services-content img {
+        width: 80px; /* Aumenta o tamanho da imagem se necessário */
+        height: 80px; /* Ajusta a altura proporcionalmente */
+        margin-bottom: 20px; /* Espaço abaixo da imagem */
+    }
+
+    .services-title, .services-text {
+        text-align: center; /* Centraliza o título e o texto */
+    }
+
+    .services h2, .separar {
+        margin-bottom: 20px; /* Adiciona espaço abaixo dos títulos para separação */
+    }
+
+    .benefits-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+
+    .benefits-content-img img {
+        max-width: 100%; /* Limita a largura máxima a 100% do seu contêiner */
+        height: auto; /* Mantém a proporção da altura baseada na largura */
+        width: 80%; /* Define uma largura padrão como 80% do contêiner */
+    }
+
+    .about-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .about-details h1 {
+        text-align: center;
+        margin: auto;
+        width: 100%;
+    }
+
+    .about-details p {
+        text-align: center;
+        margin: auto;
+        width: 100%;
+    }
+
+    .about-content-img {
+        margin: 0 auto; /* Centraliza a div */
+        display: flex;
+        justify-content: center;
+        width: 100%; /* Faz a div ocupar toda a largura disponível */
+    }
+
+    .about-content-img img {
+        width: 300px;
+    }
+
+    .cta-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-content-img img {
+        margin-left: 30px;
+        max-width: 100%; /* Limita a largura máxima a 100% do seu contêiner */
+        height: auto; /* Mantém a proporção da altura baseada na largura */
+        width: 90%; /* Define uma largura padrão como 80% do contêiner */
+    }
+
+    .cta-details h5 {
+        margin-top: 20px;
+    }
+
+    .final {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center; /* Isso irá centralizar o texto dentro da div .final-details */
+        margin: auto; /* Isso irá centralizar a div .final na página */
+        padding: 3rem;
+    }
+    
+    .final-img,
+    .final-img img {
+        padding-bottom: 10px;
+        width: 200px; /* Largura fixa para a imagem */
+        height: auto; /* Altura automática para manter a proporção */
+        margin: 0 auto; /* Isso irá centralizar a imagem dentro da div .final-img */
+        display: block; /* Não é necessário 'display: flex' para a imagem */
+    }
+}
+
+
+
