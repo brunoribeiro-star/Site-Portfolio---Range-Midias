@@ -946,27 +946,23 @@ body {
         padding-bottom: 30px;
     }
 
-    .feedbacks-content, .manual-navigation {
-        width: 100%;
-    }
-
     .slider {
-        width: 300%;
-        overflow: hidden;
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
     }
 
-    .slider input {
-        display: none;
+    .slider img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-left: 6.5%;
     }
 
-    .slide {
-        width: 33.3333%;
-    }
-
-    .slide img {
-        width: 100%;
-        height: auto;
-        border-radius: 20px;
+    .slide-first, .slide {
+        justify-content: center;
+        align-items: center;
     }
     
     .cta-content {
