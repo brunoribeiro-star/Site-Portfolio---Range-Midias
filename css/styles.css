@@ -900,6 +900,7 @@ body {
         justify-content: center;
         align-items: center;
         width: 100%;
+        padding-bottom: 30px;
     }
 
     .about-details {
@@ -933,6 +934,10 @@ body {
 
     .about-content-img img {
         width: 300px;
+    }
+
+    .feedbacks {
+        padding-top: 20px;
     }
 
     .feedbacks h1 {
